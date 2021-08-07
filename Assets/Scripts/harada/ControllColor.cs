@@ -9,12 +9,23 @@ public class ControllColor : MonoBehaviour
 {
     ColorManager color_manager;
 
+    // キャンバス
+    GameObject canvas;
+
     // UIサークル用の情報
     GameObject[] Circles;
     GameObject[] MonoCircles;
     Vector3[] c_SettingPos;
 
     Vector3 Vanish_Pos;
+
+    // 選択時のフォーカス画像
+    GameObject Focus_Circle;
+    Vector3 Pos_modify_focus;
+
+    // サークル表示時間
+    float Time_circlesShow;
+    bool isShowing = false;
 
     // 色を持っているか持ってないか
     bool[] isHaving;
@@ -45,7 +56,7 @@ public class ControllColor : MonoBehaviour
 
         GameObject temp_g = Resources.Load<GameObject>("Sprites/Monochrome_g");
 
-        GameObject canvas = GameObject.Find("Canvas");
+        canvas = GameObject.Find("Canvas");
 
         for (var i = 0; i < (int)ColorManager.Color_Type.c_Max; ++i)
         {
@@ -57,13 +68,14 @@ public class ControllColor : MonoBehaviour
             // サークルがある場合
             if (Circles[i] != null)
             {
-                c_SettingPos[i] = Circles[i].transform.position;
+                c_SettingPos[i] = new Vector3(Circles[i].transform.position.x - canvas.transform.position.x,
+                    Circles[i].transform.position.y, Circles[i].transform.position.z);
 
                 // 最初は白黒を配置する
                 MonoCircles[i] = Instantiate<GameObject>(temp_g);
                 MonoCircles[i].transform.parent = canvas.transform;
 
-                MonoCircles[i].transform.position = c_SettingPos[i];
+                MonoCircles[i].transform.position = Vanish_Pos;
                 Circles[i].transform.position = Vanish_Pos;
             }
             else
@@ -72,24 +84,65 @@ public class ControllColor : MonoBehaviour
             }
         }
 
+        Focus_Circle = canvas.transform.Find("Focus").gameObject;
 
+        Pos_modify_focus = new Vector3(Focus_Circle.transform.position.x - canvas.transform.position.x
+            - c_SettingPos[0].x, Focus_Circle.transform.position.y - c_SettingPos[0].y,
+            Focus_Circle.transform.position.z);
 
-
+        // 遠くへ飛ばす
+        Focus_Circle.transform.position = Vanish_Pos;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
+        VanishCircles();
 
     }
 
-    public void SetColorActive(ColorManager.Color_Type col)
+    private void VanishCircles()
     {
-        isHaving[(int)col] = true;
+        if (isShowing)
+        {
+            // 表示を消す処理
+            Time_circlesShow -= Time.deltaTime;
+
+            if (Time_circlesShow <= 0f)
+            {
+                isShowing = false;
+
+                Time_circlesShow = 0f;
+
+                // フォーカスサークルを消す
+                Focus_Circle.transform.position = Vanish_Pos;
+
+                // 各サークルを消す
+                for (var k = 0; k < (int)ColorManager.Color_Type.c_Max; ++k)
+                {
+                    if (Circles[k] != null)
+                    {
+                        if (isHaving[k])
+                        {
+                            Circles[k].transform.position = Vanish_Pos;
+                        }
+                        else
+                        {
+                            MonoCircles[k].transform.position = Vanish_Pos;
+
+                        }
+                    }
+                }
+            }
+        }
     }
 
+
+    public void SetColorActiveState(ColorManager.Color_Type col,bool state)
+    {
+        isHaving[(int)col] = state;
+    }
+    
     private void SwitchAbilityStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         // 関数が呼ばれているかチェック
@@ -109,15 +162,42 @@ public class ControllColor : MonoBehaviour
         }
 
         // 能力を一つも持ってない場合
-        if (fal_num == 0)
+        if (fal_num == (int)ColorManager.Color_Type.c_Max)
         {
             return;
         }
         else
         {
+            // サークルの表示処理
+            isShowing = true;
+
+            Time_circlesShow = 2f;
+
+            for (var k = 0; k < (int)ColorManager.Color_Type.c_Max; ++k)
+            {
+                if (Circles[k] != null)
+                {
+                    if (isHaving[k])
+                    {
+                        Circles[k].transform.position = new Vector3(c_SettingPos[k].x + canvas.transform.position.x,
+                            c_SettingPos[k].y, c_SettingPos[k].z);
+
+                        MonoCircles[k].transform.position = Vanish_Pos;
+                    }
+                    else
+                    {
+                        Circles[k].transform.position = Vanish_Pos;
+
+                        MonoCircles[k].transform.position = new Vector3(c_SettingPos[k].x + canvas.transform.position.x,
+                            c_SettingPos[k].y, c_SettingPos[k].z);
+                    }
+                }
+            }
+
             // 色の切り替え処理
             for (var j = 0; ; j++)
             {
+                // 能力の切り替え処理
                 index_CurPow++;
 
                 if (index_CurPow >= (int)ColorManager.Color_Type.c_Max)
@@ -129,6 +209,10 @@ public class ControllColor : MonoBehaviour
                 if (isHaving[index_CurPow])
                 {
                     GetComponent<Player>().SetPlayerColor((ColorManager.Color_Type)index_CurPow);
+
+                    // フォーカスオブジェクトを移動させる
+                    Focus_Circle.transform.position = new Vector3(c_SettingPos[index_CurPow].x + canvas.transform.position.x
+                        + Pos_modify_focus.x, c_SettingPos[index_CurPow].y + Pos_modify_focus.y, Pos_modify_focus.z);
 
                     break;
                 }

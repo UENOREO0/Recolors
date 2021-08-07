@@ -15,8 +15,8 @@ TagManager:
   - Player
   - PlayerFoot
   - PassedFloor
-  - NullColor
-  - 
+  - Water
+  - PlayerNone
   - 
   - 
   - 

@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// �v���C���[
+/// プレイヤー
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(GroundChecker))]
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
     [SerializeField]
     float speed = 10;
 
-    [Tooltip("�傫������ƃL�r�L�r�����i�傫������ƃo�O��j")]
+    [Tooltip("大きくするとキビキビ動く（大きすぎるとバグる）")]
     [SerializeField]
     float speedFollowing = 30;
 
@@ -39,6 +39,11 @@ public class Player : MonoBehaviour {
 
     Renderer rend;
 
+    // 服だけの色情報を管理するリスト
+    List<Renderer> list_renderersForClothes;
+
+    // 
+
     GrabedObject grabedObject;
 
     [SerializeField]
@@ -62,6 +67,22 @@ public class Player : MonoBehaviour {
         groundChecker = GetComponent<GroundChecker>();
 
         rend = GetComponent<Renderer>();
+
+        // リストに追加
+        list_renderersForClothes = new List<Renderer>();
+
+        list_renderersForClothes.Add(transform.Find("体").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("スカート部分").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("右腕").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("左腕").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("右袖").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("右足").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("三角布").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("左腕").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("左袖").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("左足").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("裏の髪").gameObject.GetComponent<Renderer>());
+        list_renderersForClothes.Add(transform.Find("髪").gameObject.GetComponent<Renderer>());
 
         inputActions = new RecolorsInputAction();
 
@@ -94,7 +115,7 @@ public class Player : MonoBehaviour {
         switch (current) {
             case ColorManager.Color_Type.Blue:
                 var scale = transform.localScale;
-                scale.y = 0.3f;
+                scale.y = 0.05f;
                 transform.localScale = scale;
                 break;
             case ColorManager.Color_Type.Red:
@@ -117,7 +138,7 @@ public class Player : MonoBehaviour {
         switch (current) {
             case ColorManager.Color_Type.Blue:
                 var scale = transform.localScale;
-                scale.y = 1.0f;
+                scale.y = 0.12f;
                 transform.localScale = scale;
                 break;
             case ColorManager.Color_Type.Red:
@@ -176,7 +197,7 @@ public class Player : MonoBehaviour {
 
 
     void Update() {
-        //���ɂ��蔲����p
+        //下にすり抜ける用
         var value = inputActions.Player.Move.ReadValue<Vector2>();
         var active = value.y > -0.8f;
 
@@ -186,7 +207,7 @@ public class Player : MonoBehaviour {
 
     }
 
-    //�W�����v
+    //ジャンプ
     private void JumpStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         if (groundChecker.IsGround) {
             var j = (current == ColorManager.Color_Type.Blue && abilityDurationCo != null) ?  waterJump : jump;
@@ -197,7 +218,7 @@ public class Player : MonoBehaviour {
 
 
     void FixedUpdate() {
-        //���ړ�
+        //横移動
         var value = inputActions.Player.Move.ReadValue<Vector2>();
 
         if (grabedObject!=null&& grabedObject.IsGrab) {
@@ -210,6 +231,16 @@ public class Player : MonoBehaviour {
         moveForce.y = 0;
 
         rigid.AddForce(moveForce);
+
+        // 体の向きを買える
+        if (value.x > 0.1f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        if (value.x < -0.1f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
     }
 
     public void Death(ColorManager.Color_Type type) {
@@ -222,15 +253,38 @@ public class Player : MonoBehaviour {
 
         current = type;
         manager.TurnMonochrome(current);
-        rend.material.color = ColorManager.GetOriginalColor(current);
+
+        // 服の色を変更
+        for (var i = 0; i < list_renderersForClothes.Count; ++i)
+        {
+            list_renderersForClothes[i].material.color = ColorManager.GetOriginalColor(current);
+        }
+
         isColor = true;
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        var colorObj = collision.GetComponent<ColorObject>();
+        if (colorObj != null) {
+            var type = colorObj.GetColorType();
+
+            if (type == ColorManager.Color_Type.Blue) {
+
+                current = type;
+                manager.TurnMonochrome(current);
+
+                isColor = true;
+                con_color.SetColorActiveState(ColorManager.Color_Type.Blue, true);
+
+                collision.GetComponent<Collider2D>().isTrigger = false;
+                Death(ColorManager.Color_Type.Blue);
+            }
+        }
 
         grabedObject ??= collision.GetComponent<GrabedObject>();
     }
+
     private void OnTriggerExit2D(Collider2D collision) {
             if (grabedObject == collision.GetComponent<GrabedObject>()) {
                 grabedObject?.GrabEnd();
@@ -239,7 +293,7 @@ public class Player : MonoBehaviour {
         }
     
 
-    // ControllColor�@����Ăяo�� /////////////////////////////////////
+    // ControllColor　から呼び出し /////////////////////////////////////
     ControllColor con_color;
 
     public RecolorsInputAction GetInputAction()
@@ -247,10 +301,15 @@ public class Player : MonoBehaviour {
         return inputActions;
     }
 
-    // �F��ݒ�
+    // 色を設定
     public void SetPlayerColor(ColorManager.Color_Type c_type)
     {
         current = c_type;
-        rend.material.color = ColorManager.GetOriginalColor(current);
+
+        // 服の色を変更
+        for (var i = 0; i < list_renderersForClothes.Count; ++i)
+        {
+            list_renderersForClothes[i].material.color = ColorManager.GetOriginalColor(c_type);
+        }
     }
 }
