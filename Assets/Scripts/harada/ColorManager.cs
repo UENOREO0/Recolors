@@ -107,6 +107,10 @@ public class ColorManager : MonoBehaviour
     {
         return white_MaterialColor;
     }
+    static public Color32 GetOff()
+    {
+        return new Color(0.2f,0.2f,0.2f,1);
+    }
 
     // “Á’è‚ÌF‚ğ”’•‚É•ÏX‚·‚éˆ—
     public void TurnMonochrome(Color_Type color)
