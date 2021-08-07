@@ -38,6 +38,15 @@ public class Player : MonoBehaviour {
 
     GrabedObject grabedObject;
 
+    [SerializeField]
+    float abilityDuration = 5;
+    [SerializeField]
+    float abilityCoolDown = 2;
+
+    Coroutine abilityDurationCo = null;
+    Coroutine abilityCoolDownCo = null;
+
+
     void Awake() {
         respawnPos = transform.position;
         camera_respawnPos = Camera.main.transform.position;
@@ -76,7 +85,7 @@ public class Player : MonoBehaviour {
     }
 
     private void UseAbilityStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-        if (!isColor) {
+        if (!isColor|| abilityCoolDownCo!=null) {
             return;
         }
         switch (current) {
@@ -88,7 +97,9 @@ public class Player : MonoBehaviour {
             case ColorManager.Color_Type.Red:
                 break;
             case ColorManager.Color_Type.Yellow:
-                break;
+                abilityCoolDownCo = StartCoroutine(AbilityCoolDown());
+                return;
+
             case ColorManager.Color_Type.Orange:
                 break;
             case ColorManager.Color_Type.Purple:
@@ -100,9 +111,10 @@ public class Player : MonoBehaviour {
             default:
                 break;
         }
+        abilityDurationCo = StartCoroutine(AbilityDuration());
     }
     private void UseAbilityCanceled(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-        if (!isColor) {
+        if (!isColor || abilityCoolDownCo != null) {
             return;
         }
         switch (current) {
@@ -126,7 +138,44 @@ public class Player : MonoBehaviour {
             default:
                 break;
         }
+        if (abilityDurationCo!=null) {
+            StopCoroutine(abilityDurationCo);
+            abilityDurationCo = null;
+        }
+
+        abilityCoolDownCo = StartCoroutine(AbilityCoolDown());
     }
+
+    IEnumerator AbilityDuration() {
+        float startTime = Time.time;
+        float currentTime = Time.time;
+
+        while (currentTime - startTime < abilityDuration) {
+            currentTime = Time.time;
+
+
+
+            yield return null;
+        }
+
+        UseAbilityCanceled(new UnityEngine.InputSystem.InputAction.CallbackContext());
+        abilityDurationCo = null;
+    }
+    IEnumerator AbilityCoolDown() {
+        float startTime = Time.time;
+        float currentTime = Time.time;
+
+        while (currentTime - startTime < abilityCoolDown) {
+            currentTime = Time.time;
+
+
+
+            yield return null;
+        }
+
+        abilityCoolDownCo = null;
+    }
+
 
     void OnDisable() => inputActions.Disable();
     void OnDestroy() => inputActions.Disable();
