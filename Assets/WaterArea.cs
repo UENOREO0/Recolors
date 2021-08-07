@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaterArea : MonoBehaviour {
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnCollisionStay2D(Collision2D collision) {
         collision.gameObject.GetComponent<Player>()?.Death(GetComponent<ColorObject>().GetColorType());
 
     }

@@ -24,7 +24,7 @@ public class Icicle : MonoBehaviour {
             rig.simulated = true;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionStay2D(Collision2D collision) {
         collision.gameObject.GetComponent<Player>()?.Death(GetComponent<ColorObject>().GetColorType());
         gameObject.SetActive(false);
         rig.simulated = false;
