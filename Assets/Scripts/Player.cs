@@ -253,7 +253,13 @@ public class Player : MonoBehaviour {
 
         current = type;
         manager.TurnMonochrome(current);
-        rend.material.color = ColorManager.GetOriginalColor(current);
+
+        // 服の色を変更
+        for (var i = 0; i < list_renderersForClothes.Count; ++i)
+        {
+            list_renderersForClothes[i].material.color = ColorManager.GetOriginalColor(current);
+        }
+
         isColor = true;
     }
 
@@ -268,11 +274,6 @@ public class Player : MonoBehaviour {
                 current = type;
                 manager.TurnMonochrome(current);
 
-                // 服の色を変更
-                for(var i = 0; i < list_renderersForClothes.Count; ++i)
-                {
-                    list_renderersForClothes[i].material.color = ColorManager.GetOriginalColor(ColorManager.Color_Type.Blue);
-                }
 
                 isColor = true;
                 con_color.SetColorActiveState(ColorManager.Color_Type.Blue, true);
