@@ -10,9 +10,6 @@ public class ColorManager : MonoBehaviour
         Blue = 0,
         Red,
         Yellow,
-        Orange,
-        Purple,
-        Green,
         c_Max
     };
 

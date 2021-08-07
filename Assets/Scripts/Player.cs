@@ -103,12 +103,6 @@ public class Player : MonoBehaviour {
                 abilityCoolDownCo = StartCoroutine(AbilityCoolDown());
                 return;
 
-            case ColorManager.Color_Type.Orange:
-                break;
-            case ColorManager.Color_Type.Purple:
-                break;
-            case ColorManager.Color_Type.Green:
-                break;
             case ColorManager.Color_Type.c_Max:
                 break;
             default:
@@ -130,12 +124,7 @@ public class Player : MonoBehaviour {
                 break;
             case ColorManager.Color_Type.Yellow:
                 break;
-            case ColorManager.Color_Type.Orange:
-                break;
-            case ColorManager.Color_Type.Purple:
-                break;
-            case ColorManager.Color_Type.Green:
-                break;
+
             case ColorManager.Color_Type.c_Max:
                 break;
             default:
