@@ -49,9 +49,7 @@ public class ColorObject : MonoBehaviour
         havingColor = true;
 
         Ren_color.material.color = ColorManager.GetOriginalColor(MyColor);
-        foreach (var c in GetComponents<Collider2D>()) {
-            c.enabled = true;
-        }
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     public void TurnOffColor()
@@ -59,8 +57,6 @@ public class ColorObject : MonoBehaviour
         havingColor = false;
 
         Ren_color.material.color = ColorManager.GetWhite();
-        foreach (var c in GetComponents<Collider2D>()) {
-            c.enabled = false;
-        }
+        gameObject.layer = LayerMask.NameToLayer("NullColor");
     }
 }
