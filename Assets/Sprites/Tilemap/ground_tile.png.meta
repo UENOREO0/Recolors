@@ -139,8 +139,8 @@ TextureImporter:
       name: ground_tile_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 320
+        x: 0
+        y: 760
         width: 40
         height: 40
       alignment: 0
@@ -160,8 +160,8 @@ TextureImporter:
       name: ground_tile_1
       rect:
         serializedVersion: 2
-        x: 120
-        y: 320
+        x: 80
+        y: 760
         width: 40
         height: 40
       alignment: 0
@@ -181,8 +181,8 @@ TextureImporter:
       name: ground_tile_2
       rect:
         serializedVersion: 2
-        x: 200
-        y: 320
+        x: 160
+        y: 760
         width: 40
         height: 40
       alignment: 0
@@ -202,8 +202,8 @@ TextureImporter:
       name: ground_tile_3
       rect:
         serializedVersion: 2
-        x: 280
-        y: 320
+        x: 240
+        y: 760
         width: 40
         height: 40
       alignment: 0
@@ -223,8 +223,8 @@ TextureImporter:
       name: ground_tile_4
       rect:
         serializedVersion: 2
-        x: 40
-        y: 280
+        x: 0
+        y: 720
         width: 40
         height: 40
       alignment: 0
@@ -244,8 +244,8 @@ TextureImporter:
       name: ground_tile_5
       rect:
         serializedVersion: 2
-        x: 120
-        y: 280
+        x: 0
+        y: 680
         width: 40
         height: 40
       alignment: 0
@@ -265,8 +265,8 @@ TextureImporter:
       name: ground_tile_6
       rect:
         serializedVersion: 2
-        x: 40
-        y: 240
+        x: 80
+        y: 680
         width: 40
         height: 40
       alignment: 0
@@ -286,8 +286,8 @@ TextureImporter:
       name: ground_tile_7
       rect:
         serializedVersion: 2
-        x: 120
-        y: 240
+        x: 160
+        y: 680
         width: 40
         height: 40
       alignment: 0
@@ -307,8 +307,8 @@ TextureImporter:
       name: ground_tile_8
       rect:
         serializedVersion: 2
-        x: 200
-        y: 240
+        x: 0
+        y: 640
         width: 40
         height: 40
       alignment: 0
@@ -328,8 +328,8 @@ TextureImporter:
       name: ground_tile_9
       rect:
         serializedVersion: 2
-        x: 40
-        y: 200
+        x: 80
+        y: 600
         width: 40
         height: 40
       alignment: 0
@@ -349,8 +349,8 @@ TextureImporter:
       name: ground_tile_10
       rect:
         serializedVersion: 2
-        x: 120
-        y: 200
+        x: 160
+        y: 600
         width: 40
         height: 40
       alignment: 0
@@ -370,8 +370,8 @@ TextureImporter:
       name: ground_tile_11
       rect:
         serializedVersion: 2
-        x: 120
-        y: 160
+        x: 80
+        y: 520
         width: 40
         height: 40
       alignment: 0
@@ -391,8 +391,8 @@ TextureImporter:
       name: ground_tile_12
       rect:
         serializedVersion: 2
-        x: 200
-        y: 160
+        x: 160
+        y: 520
         width: 40
         height: 40
       alignment: 0
@@ -412,8 +412,8 @@ TextureImporter:
       name: ground_tile_13
       rect:
         serializedVersion: 2
-        x: 120
-        y: 120
+        x: 80
+        y: 440
         width: 40
         height: 40
       alignment: 0
@@ -433,8 +433,8 @@ TextureImporter:
       name: ground_tile_14
       rect:
         serializedVersion: 2
-        x: 200
-        y: 80
+        x: 80
+        y: 360
         width: 40
         height: 40
       alignment: 0
