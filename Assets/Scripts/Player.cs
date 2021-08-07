@@ -218,28 +218,18 @@ public class Player : MonoBehaviour {
         rigid.AddForce(moveForce);
     }
 
-    void Death() {
+    public void Death(ColorManager.Color_Type type) {
         transform.position = respawnPos;
         Camera.main.transform.position = camera_respawnPos;
+
+        current = type;
+        manager.TurnMonochrome(current);
+        rend.material.color = ColorManager.GetOriginalColor(current);
+        isColor = true;
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        var colorObj = collision.GetComponent<ColorObject>();
-        if (colorObj != null) {
-            var type = colorObj.GetColorType();
-
-            if (type == ColorManager.Color_Type.Blue) {
-
-                current = type;
-                manager.TurnMonochrome(current);
-                rend.material.color = ColorManager.GetOriginalColor(current);
-                isColor = true;
-
-                collision.GetComponent<Collider2D>().isTrigger = false;
-                Death();
-            }
-        }
 
         grabedObject ??= collision.GetComponent<GrabedObject>();
     }
