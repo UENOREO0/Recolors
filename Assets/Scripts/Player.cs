@@ -19,6 +19,9 @@ public class Player : MonoBehaviour {
     [SerializeField]
     float jump = 5;
 
+    [SerializeField]
+    float waterJump = 3;
+
 
     RecolorsInputAction inputActions;
     Rigidbody2D rigid;
@@ -42,6 +45,15 @@ public class Player : MonoBehaviour {
     // 
 
     GrabedObject grabedObject;
+
+    [SerializeField]
+    float abilityDuration = 5;
+    [SerializeField]
+    float abilityCoolDown = 2;
+
+    Coroutine abilityDurationCo = null;
+    Coroutine abilityCoolDownCo = null;
+
 
     void Awake() {
         respawnPos = transform.position;
@@ -97,7 +109,7 @@ public class Player : MonoBehaviour {
     }
 
     private void UseAbilityStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-        if (!isColor) {
+        if (!isColor|| abilityCoolDownCo!=null) {
             return;
         }
         switch (current) {
@@ -109,21 +121,18 @@ public class Player : MonoBehaviour {
             case ColorManager.Color_Type.Red:
                 break;
             case ColorManager.Color_Type.Yellow:
-                break;
-            case ColorManager.Color_Type.Orange:
-                break;
-            case ColorManager.Color_Type.Purple:
-                break;
-            case ColorManager.Color_Type.Green:
-                break;
+                abilityCoolDownCo = StartCoroutine(AbilityCoolDown());
+                return;
+
             case ColorManager.Color_Type.c_Max:
                 break;
             default:
                 break;
         }
+        abilityDurationCo = StartCoroutine(AbilityDuration());
     }
     private void UseAbilityCanceled(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-        if (!isColor) {
+        if (!isColor || abilityCoolDownCo != null) {
             return;
         }
         switch (current) {
@@ -136,18 +145,50 @@ public class Player : MonoBehaviour {
                 break;
             case ColorManager.Color_Type.Yellow:
                 break;
-            case ColorManager.Color_Type.Orange:
-                break;
-            case ColorManager.Color_Type.Purple:
-                break;
-            case ColorManager.Color_Type.Green:
-                break;
+
             case ColorManager.Color_Type.c_Max:
                 break;
             default:
                 break;
         }
+        if (abilityDurationCo!=null) {
+            StopCoroutine(abilityDurationCo);
+            abilityDurationCo = null;
+        }
+
+        abilityCoolDownCo = StartCoroutine(AbilityCoolDown());
     }
+
+    IEnumerator AbilityDuration() {
+        float startTime = Time.time;
+        float currentTime = Time.time;
+
+        while (currentTime - startTime < abilityDuration) {
+            currentTime = Time.time;
+
+
+
+            yield return null;
+        }
+
+        UseAbilityCanceled(new UnityEngine.InputSystem.InputAction.CallbackContext());
+        abilityDurationCo = null;
+    }
+    IEnumerator AbilityCoolDown() {
+        float startTime = Time.time;
+        float currentTime = Time.time;
+
+        while (currentTime - startTime < abilityCoolDown) {
+            currentTime = Time.time;
+
+
+
+            yield return null;
+        }
+
+        abilityCoolDownCo = null;
+    }
+
 
     void OnDisable() => inputActions.Disable();
     void OnDestroy() => inputActions.Disable();
@@ -169,7 +210,9 @@ public class Player : MonoBehaviour {
     //ジャンプ
     private void JumpStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         if (groundChecker.IsGround) {
-            rigid.AddForce(new Vector2(0, jump), ForceMode2D.Impulse);
+            var j = (current == ColorManager.Color_Type.Blue && abilityDurationCo != null) ?  waterJump : jump;
+
+            rigid.AddForce(new Vector2(0, j), ForceMode2D.Impulse);
         }
     }
 
@@ -200,9 +243,18 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void Death() {
+    public void Death(ColorManager.Color_Type type) {
+        if (type == ColorManager.Color_Type.Blue && type == current && abilityDurationCo != null) {
+            return;
+        }
+
         transform.position = respawnPos;
         Camera.main.transform.position = camera_respawnPos;
+
+        current = type;
+        manager.TurnMonochrome(current);
+        rend.material.color = ColorManager.GetOriginalColor(current);
+        isColor = true;
     }
 
 
@@ -226,7 +278,7 @@ public class Player : MonoBehaviour {
                 con_color.SetColorActiveState(ColorManager.Color_Type.Blue, true);
 
                 collision.GetComponent<Collider2D>().isTrigger = false;
-                Death();
+                Death(ColorManager.Color_Type.Blue);
             }
         }
 

@@ -10,9 +10,6 @@ public class ColorManager : MonoBehaviour
         Blue = 0,
         Red,
         Yellow,
-        Orange,
-        Purple,
-        Green,
         c_Max
     };
 
@@ -106,6 +103,10 @@ public class ColorManager : MonoBehaviour
     static public Color32 GetWhite()
     {
         return white_MaterialColor;
+    }
+    static public Color32 GetOff()
+    {
+        return new Color(0.2f,0.2f,0.2f,1);
     }
 
     // “Á’è‚ÌF‚ğ”’•‚É•ÏX‚·‚éˆ—

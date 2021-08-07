@@ -12,7 +12,7 @@ public class ColorObject : MonoBehaviour
     [SerializeField]
     ColorManager.Color_Type MyColor;
 
-    Renderer Ren_color;
+    SpriteRenderer Ren_color;
 
     // êFÇéùÇ¡ÇƒÇ¢ÇÈÇ©Ç«Ç§Ç©ÅAäOïîÇ©ÇÁéÊìæ
     bool havingColor;
@@ -22,7 +22,7 @@ public class ColorObject : MonoBehaviour
     {
         havingColor = true;
 
-        Ren_color = gameObject.GetComponent<Renderer>();
+        Ren_color = gameObject.GetComponent<SpriteRenderer>();
         Ren_color.material.color = ColorManager.GetOriginalColor(MyColor);
     }
 
@@ -48,19 +48,15 @@ public class ColorObject : MonoBehaviour
     {
         havingColor = true;
 
-        Ren_color.material.color = ColorManager.GetOriginalColor(MyColor);
-        foreach (var c in GetComponents<Collider2D>()) {
-            c.enabled = true;
-        }
+        Ren_color.color = ColorManager.GetOriginalColor(MyColor);
+       // gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     public void TurnOffColor()
     {
         havingColor = false;
 
-        Ren_color.material.color = ColorManager.GetWhite();
-        foreach (var c in GetComponents<Collider2D>()) {
-            c.enabled = false;
-        }
+        Ren_color.color = ColorManager.GetOff();
+       // gameObject.layer = LayerMask.NameToLayer("NullColor");
     }
 }
