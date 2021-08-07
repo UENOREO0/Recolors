@@ -274,7 +274,6 @@ public class Player : MonoBehaviour {
                 current = type;
                 manager.TurnMonochrome(current);
 
-
                 isColor = true;
                 con_color.SetColorActiveState(ColorManager.Color_Type.Blue, true);
 
@@ -285,6 +284,7 @@ public class Player : MonoBehaviour {
 
         grabedObject ??= collision.GetComponent<GrabedObject>();
     }
+
     private void OnTriggerExit2D(Collider2D collision) {
             if (grabedObject == collision.GetComponent<GrabedObject>()) {
                 grabedObject?.GrabEnd();

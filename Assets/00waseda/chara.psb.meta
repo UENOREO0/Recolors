@@ -106,14 +106,10 @@ ScriptedImporter:
     internalID: 0
     spriteBone:
     - name: bone_19
-      guid: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 0}
       length: 0
       parentId: 0
-      color:
-        serializedVersion: 2
-        rgba: 0
     spriteOutline: []
     vertices: []
     spritePhysicsOutline: []
