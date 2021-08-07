@@ -49,7 +49,7 @@ public class ColorObject : MonoBehaviour
         havingColor = true;
 
         Ren_color.color = ColorManager.GetOriginalColor(MyColor);
-        gameObject.layer = LayerMask.NameToLayer("Default");
+       // gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     public void TurnOffColor()
@@ -57,6 +57,6 @@ public class ColorObject : MonoBehaviour
         havingColor = false;
 
         Ren_color.color = ColorManager.GetOff();
-        gameObject.layer = LayerMask.NameToLayer("NullColor");
+       // gameObject.layer = LayerMask.NameToLayer("NullColor");
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1946707483457287923}
   - component: {fileID: 1946707483457287920}
   - component: {fileID: 7466580008809005183}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaterArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1946707483457287926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.066, y: -4.541, z: 0}
-  m_LocalScale: {x: 9.452059, y: 1.8996572, z: 1}
+  m_LocalScale: {x: 8.573868, y: 1.8996572, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,7 +44,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

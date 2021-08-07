@@ -19,6 +19,9 @@ public class Player : MonoBehaviour {
     [SerializeField]
     float jump = 5;
 
+    [SerializeField]
+    float waterJump = 3;
+
 
     RecolorsInputAction inputActions;
     Rigidbody2D rigid;
@@ -197,7 +200,9 @@ public class Player : MonoBehaviour {
     //ƒWƒƒƒ“ƒv
     private void JumpStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         if (groundChecker.IsGround) {
-            rigid.AddForce(new Vector2(0, jump), ForceMode2D.Impulse);
+            var j = (current == ColorManager.Color_Type.Blue && abilityDurationCo != null) ?  waterJump : jump;
+
+            rigid.AddForce(new Vector2(0, j), ForceMode2D.Impulse);
         }
     }
 
@@ -219,6 +224,10 @@ public class Player : MonoBehaviour {
     }
 
     public void Death(ColorManager.Color_Type type) {
+        if (type == ColorManager.Color_Type.Blue && type == current && abilityDurationCo != null) {
+            return;
+        }
+
         transform.position = respawnPos;
         Camera.main.transform.position = camera_respawnPos;
 
