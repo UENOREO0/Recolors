@@ -136,6 +136,7 @@ MonoBehaviour:
     m_Extent: {x: 5.2412815, y: 5.2649612, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &790156829670178728
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +299,7 @@ MonoBehaviour:
     m_Extent: {x: 12.547279, y: 8.4279995, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &1197334048620854476
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +404,7 @@ MonoBehaviour:
     m_Extent: {x: 14.976484, y: 23.103966, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &1728992949222125007
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +542,7 @@ MonoBehaviour:
     m_Extent: {x: 21.314726, y: 25.719997, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &2511306984472712972
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +647,7 @@ MonoBehaviour:
     m_Extent: {x: 7.675523, y: 7.76, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &2611466641760878912
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +783,7 @@ MonoBehaviour:
     m_Extent: {x: 18.594141, y: 21.857195, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &2865564675456590897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1183,7 @@ MonoBehaviour:
     m_Extent: {x: 0.8034903, y: 0.6486052, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &4680607871305247301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,6 +1478,7 @@ MonoBehaviour:
     m_Extent: {x: 9.603241, y: 16.385002, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &6504561493316081207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1703,7 @@ MonoBehaviour:
     m_Extent: {x: 11.0474, y: 12.720602, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &7584330656738563899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,6 +1808,7 @@ MonoBehaviour:
     m_Extent: {x: 12.164881, y: 11.860239, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &7684082797937463427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,6 +2060,7 @@ MonoBehaviour:
     m_Extent: {x: 25.897228, y: 34.52241, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
 --- !u!1 &8569802661842449555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,3 +2196,4 @@ MonoBehaviour:
     m_Extent: {x: 9.44692, y: 16.724924, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
+  m_AutoRebind: 0
