@@ -26840,6 +26840,67 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -710, y: 316}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 512
+  importedTextureHeight: 1024
+  documentSize: {x: 1920, y: 1080}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 512
+  textureActualHeight: 1024
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 1
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: "\u6728"
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 00000000000000000000000000000000
+    layerID: 14
+    mosaicPosition: {x: 0, y: 0}
+  - name: "\u6728\u672C\u4F53"
+    spriteName: "\u6728\u672C\u4F53"
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 5c7b9f5350be295439796fb8641dca26
+    layerID: 13
+    mosaicPosition: {x: 4, y: 4}
+  - name: "\u8449\u3063\u3071\uFF11"
+    spriteName: "\u8449\u3063\u3071\uFF11"
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 0345139c09c25a64dbbd0b26024015d5
+    layerID: 12
+    mosaicPosition: {x: 4, y: 539}
+  - name: "\u8449\u3063\u3071\uFF12"
+    spriteName: "\u8449\u3063\u3071\uFF12"
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 53b86a80cc8c7f643be0680469eccd07
+    layerID: 11
+    mosaicPosition: {x: 4, y: 350}
+  - name: "\u8449\u3063\u3071\uFF13"
+    spriteName: "\u8449\u3063\u3071\uFF13"
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 22a31ece6cffbd44a931b2754a66d2b8
+    layerID: 10
+    mosaicPosition: {x: 240, y: 749}
+  - name: "\u8449\u3063\u3071\uFF14"
+    spriteName: "\u8449\u3063\u3071\uFF14"
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 22e1fa7947adf2b419a5ff5adf83b3f1
+    layerID: 9
+    mosaicPosition: {x: 4, y: 749}
   characterData:
     bones: []
     parts:
@@ -26890,80 +26951,8 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
-    boneReadOnly: 0
-  sharedRigSpriteImportData: []
-  sharedRigCharacterData:
-    bones: []
-    parts: []
-    dimension: {x: 0, y: 0}
-    characterGroups: []
-    boneReadOnly: 0
-  platformSettings: []
-  mosaicLayers: 1
-  characterMode: 1
-  documentPivot: {x: 0, y: 0}
-  documentAlignment: 7
-  importHiddenLayers: 0
-  importedTextureWidth: 512
-  importedTextureHeight: 1024
-  documentSize: {x: 1920, y: 1080}
-  paperDollMode: 0
-  keepDupilcateSpriteName: 1
-  skeletonAssetReferenceID: 
-  spriteCategoryList:
-    categories: []
-  textureActualWidth: 512
-  textureActualHeight: 1024
-  spritePackingTag: 
-  resliceFromLayer: 0
-  mosaicPSDLayers: []
-  rigPSDLayers:
-  - name: "\u6728"
-    spriteName: 
-    isGroup: 1
-    parentIndex: -1
-    spriteID: 00000000000000000000000000000000
-    layerID: 14
-    mosaicPosition: {x: 0, y: 0}
-  - name: "\u6728\u672C\u4F53"
-    spriteName: "\u6728\u672C\u4F53"
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 5c7b9f5350be295439796fb8641dca26
-    layerID: 13
-    mosaicPosition: {x: 4, y: 4}
-  - name: "\u8449\u3063\u3071\uFF11"
-    spriteName: "\u8449\u3063\u3071\uFF11"
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 0345139c09c25a64dbbd0b26024015d5
-    layerID: 12
-    mosaicPosition: {x: 4, y: 539}
-  - name: "\u8449\u3063\u3071\uFF12"
-    spriteName: "\u8449\u3063\u3071\uFF12"
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 53b86a80cc8c7f643be0680469eccd07
-    layerID: 11
-    mosaicPosition: {x: 4, y: 350}
-  - name: "\u8449\u3063\u3071\uFF13"
-    spriteName: "\u8449\u3063\u3071\uFF13"
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 22a31ece6cffbd44a931b2754a66d2b8
-    layerID: 10
-    mosaicPosition: {x: 240, y: 749}
-  - name: "\u8449\u3063\u3071\uFF14"
-    spriteName: "\u8449\u3063\u3071\uFF14"
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 22e1fa7947adf2b419a5ff5adf83b3f1
-    layerID: 9
-    mosaicPosition: {x: 4, y: 749}
-  sharedRigPSDLayers: []
   generateGOHierarchy: 0
   textureAssetName: tree Texture
   prefabAssetName: tree Prefab
   spriteLibAssetName: tree Sprite Lib
-  skeletonAssetName: tree Skeleton
   secondarySpriteTextures: []
