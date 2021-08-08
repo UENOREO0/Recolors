@@ -146,8 +146,8 @@ public class ControllColor : MonoBehaviour
     private void SwitchAbilityStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         // 関数が呼ばれているかチェック
-        //Debug.Log("SwtichAbility Working");
-        
+        Debug.Log("SwtichAbility Working");
+
         // 能力を持っているか判定
         var fal_num = 0;
 

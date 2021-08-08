@@ -285,22 +285,48 @@ public class Player : MonoBehaviour {
         if (colorObj != null) {
             var type = colorObj.GetColorType();
 
-            if (type == ColorManager.Color_Type.Blue) {
+            switch (type) {
+                case ColorManager.Color_Type.Blue:
 
-                current = type;
-                manager.TurnMonochrome(current);
+                    current = type;
+                    manager.TurnMonochrome(current);
 
+                    isColor = true;
+                    con_color.SetColorActiveState(ColorManager.Color_Type.Blue, true);
 
-                isColor = true;
-                con_color.SetColorActiveState(ColorManager.Color_Type.Blue, true);
+                    collision.GetComponent<Collider2D>().isTrigger = false;
+                    Death(ColorManager.Color_Type.Blue);
 
-                collision.GetComponent<Collider2D>().isTrigger = false;
-                Death(ColorManager.Color_Type.Blue);
+                    break;
+                case ColorManager.Color_Type.Red:
+
+                    if(current== ColorManager.Color_Type.Red)
+                    {
+
+                    }
+                    else // 死ぬとき
+                    {
+                        current = type;
+                        manager.TurnMonochrome(current);
+
+                        isColor = true;
+                        con_color.SetColorActiveState(current, true);
+
+                        collision.GetComponent<Collider2D>().isTrigger = false;
+                        Death(current);
+                    }
+
+                    break;
+                case ColorManager.Color_Type.Yellow:
+
+                    break;
             }
+            
         }
 
         grabedObject ??= collision.GetComponent<GrabedObject>();
     }
+
     private void OnTriggerExit2D(Collider2D collision) {
             if (grabedObject == collision.GetComponent<GrabedObject>()) {
                 grabedObject?.GrabEnd();
