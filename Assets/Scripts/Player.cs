@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
     Vector3 respawnPos;
     Vector3 camera_respawnPos;
 
-    Renderer rend;
+    Animator animator;
 
     // 服だけの色情報を管理するリスト
     List<Renderer> list_renderersForClothes;
@@ -54,8 +54,14 @@ public class Player : MonoBehaviour {
     Coroutine abilityDurationCo = null;
     Coroutine abilityCoolDownCo = null;
 
+    float yScale;
+
+    bool lastIsGround = false;
 
     void Awake() {
+        animator = GetComponentInChildren<Animator>();
+        yScale = transform.localScale.y;
+
         respawnPos = transform.position;
         camera_respawnPos = Camera.main.transform.position;
 
@@ -66,7 +72,6 @@ public class Player : MonoBehaviour {
         rigid = GetComponent<Rigidbody2D>();
         groundChecker = GetComponent<GroundChecker>();
 
-        rend = GetComponent<Renderer>();
 
         // リストに追加
         list_renderersForClothes = new List<Renderer>();
@@ -115,7 +120,7 @@ public class Player : MonoBehaviour {
         switch (current) {
             case ColorManager.Color_Type.Blue:
                 var scale = transform.localScale;
-                scale.y = 0.05f;
+                scale.y = yScale/3;
                 transform.localScale = scale;
                 break;
             case ColorManager.Color_Type.Red:
@@ -138,7 +143,7 @@ public class Player : MonoBehaviour {
         switch (current) {
             case ColorManager.Color_Type.Blue:
                 var scale = transform.localScale;
-                scale.y = 0.12f;
+                scale.y = yScale;
                 transform.localScale = scale;
                 break;
             case ColorManager.Color_Type.Red:
@@ -205,6 +210,14 @@ public class Player : MonoBehaviour {
             foot.SetActive(active);
         }
 
+        if (!groundChecker.IsGround&& lastIsGround) {
+            animator.SetBool("jump", true);
+        }
+        if (groundChecker.IsGround&& !lastIsGround) {
+            animator.SetBool("jump", false);
+        }
+
+        lastIsGround = groundChecker.IsGround;
     }
 
     //ジャンプ
@@ -213,6 +226,7 @@ public class Player : MonoBehaviour {
             var j = (current == ColorManager.Color_Type.Blue && abilityDurationCo != null) ?  waterJump : jump;
 
             rigid.AddForce(new Vector2(0, j), ForceMode2D.Impulse);
+
         }
     }
 
@@ -220,6 +234,8 @@ public class Player : MonoBehaviour {
     void FixedUpdate() {
         //横移動
         var value = inputActions.Player.Move.ReadValue<Vector2>();
+
+        animator.SetFloat("speed", Mathf.Abs(value.x));
 
         if (grabedObject!=null&& grabedObject.IsGrab) {
             grabedObject.GrabMove(value.x );
@@ -247,12 +263,19 @@ public class Player : MonoBehaviour {
         if (type == ColorManager.Color_Type.Blue && type == current && abilityDurationCo != null) {
             return;
         }
+        if(type==ColorManager.Color_Type.Red&& type == current && abilityDurationCo != null)
+        {
+            return;
+        }
 
         transform.position = respawnPos;
         Camera.main.transform.position = camera_respawnPos;
 
         current = type;
         manager.TurnMonochrome(current);
+
+        // 能力の情報を追加
+        con_color.SetColorActiveState(type, true);
 
         // 服の色を変更
         for (var i = 0; i < list_renderersForClothes.Count; ++i)
@@ -283,23 +306,7 @@ public class Player : MonoBehaviour {
 
                     break;
                 case ColorManager.Color_Type.Red:
-
-                    if(current== ColorManager.Color_Type.Red)
-                    {
-
-                    }
-                    else // 死ぬとき
-                    {
-                        current = type;
-                        manager.TurnMonochrome(current);
-
-                        isColor = true;
-                        con_color.SetColorActiveState(current, true);
-
-                        collision.GetComponent<Collider2D>().isTrigger = false;
-                        Death(current);
-                    }
-
+                    
                     break;
                 case ColorManager.Color_Type.Yellow:
 
