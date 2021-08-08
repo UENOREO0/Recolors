@@ -247,12 +247,19 @@ public class Player : MonoBehaviour {
         if (type == ColorManager.Color_Type.Blue && type == current && abilityDurationCo != null) {
             return;
         }
+        if(type==ColorManager.Color_Type.Red&& type == current && abilityDurationCo != null)
+        {
+            return;
+        }
 
         transform.position = respawnPos;
         Camera.main.transform.position = camera_respawnPos;
 
         current = type;
         manager.TurnMonochrome(current);
+
+        // 能力の情報を追加
+        con_color.SetColorActiveState(type, true);
 
         // 服の色を変更
         for (var i = 0; i < list_renderersForClothes.Count; ++i)
@@ -283,23 +290,7 @@ public class Player : MonoBehaviour {
 
                     break;
                 case ColorManager.Color_Type.Red:
-
-                    if(current== ColorManager.Color_Type.Red)
-                    {
-
-                    }
-                    else // 死ぬとき
-                    {
-                        current = type;
-                        manager.TurnMonochrome(current);
-
-                        isColor = true;
-                        con_color.SetColorActiveState(current, true);
-
-                        collision.GetComponent<Collider2D>().isTrigger = false;
-                        Death(current);
-                    }
-
+                    
                     break;
                 case ColorManager.Color_Type.Yellow:
 
