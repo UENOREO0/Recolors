@@ -106,10 +106,14 @@ ScriptedImporter:
     internalID: 0
     spriteBone:
     - name: bone_19
+      guid: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 0}
       length: 0
       parentId: 0
+      color:
+        serializedVersion: 2
+        rgba: 0
     spriteOutline: []
     vertices: []
     spritePhysicsOutline: []
@@ -382,8 +386,22 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 464, y: 1461}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
   platformSettings: []
   mosaicLayers: 1
+  characterMode: 1
   documentPivot: {x: 0, y: 0}
   documentAlignment: 7
   importHiddenLayers: 0
@@ -392,13 +410,13 @@ ScriptedImporter:
   documentSize: {x: 1024, y: 1536}
   paperDollMode: 0
   keepDupilcateSpriteName: 0
+  skeletonAssetReferenceID: 
   spriteCategoryList:
     categories: []
   textureActualWidth: 2048
   textureActualHeight: 2048
   spritePackingTag: 
   resliceFromLayer: 0
-  characterMode: 1
   mosaicPSDLayers: []
   rigPSDLayers:
   - name: "\u8D64"
@@ -499,13 +517,10 @@ ScriptedImporter:
     spriteID: 82050facf7910dd4093b697cf406162c
     layerID: 61
     mosaicPosition: {x: 927, y: 1506}
-  characterData:
-    bones: []
-    parts: []
-    dimension: {x: 0, y: 0}
-    characterGroups: []
+  sharedRigPSDLayers: []
   generateGOHierarchy: 0
   textureAssetName: chara Texture
   prefabAssetName: chara Prefab
   spriteLibAssetName: chara Sprite Lib
+  skeletonAssetName: chara Skeleton
   secondarySpriteTextures: []
