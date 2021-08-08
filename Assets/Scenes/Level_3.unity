@@ -8791,7 +8791,11 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 32
+=======
+      value: 14
+>>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
       value: 14
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
@@ -8880,6 +8884,7 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: -3.82
 =======
     - target: {fileID: 6680697227291035692, guid: 7ce3186ea2d29124391ee4f1a31c2437, type: 3}
@@ -8906,6 +8911,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -8.25
 >>>>>>> Stashed changes
+=======
+      value: -3.57
+>>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
       value: -3.57
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
@@ -8967,7 +8975,11 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 10
+=======
+      value: 1
+>>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
       value: 1
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
@@ -9276,9 +9288,13 @@ PrefabInstance:
       propertyPath: m_RootOrder
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 36
 =======
       value: 1
+>>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
+=======
+      value: 22
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
       value: 22
@@ -9948,11 +9964,15 @@ Transform:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   m_RootOrder: 49
 =======
   m_RootOrder: 5
 >>>>>>> Stashed changes
+=======
+  m_RootOrder: 34
+>>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
   m_RootOrder: 34
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
@@ -10058,11 +10078,15 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 31
 =======
       value: 2
 >>>>>>> Stashed changes
+=======
+      value: 13
+>>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
       value: 13
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
@@ -11043,8 +11067,11 @@ SpriteRenderer:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
@@ -11108,6 +11135,9 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
+=======
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
 =======
 >>>>>>> parent of 5ce0c34 (Stage3(コリジョン追加）)
